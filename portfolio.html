@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header-component></header-component>
+  <script src="header.js"></script>
+
+  <div class="vertical-gallery">
+    <div class="main-image-scroll" id="mainImageScroll">
+      <img src="images/Brz.jpeg" alt="BRZ Main 1" class="main-image">
+      <img src="images/Brz.jpeg" alt="BRZ Main 2" class="main-image">
+      <img src="images/Brz.jpeg" alt="BRZ Main 3" class="main-image">
+      <img src="images/Brz.jpeg" alt="BRZ Main 4" class="main-image">
+      <img src="images/Brz.jpeg" alt="BRZ Main 5" class="main-image">
+      <img src="images/Brz.jpeg" alt="BRZ Main 6" class="main-image">
+      <img src="images/Brz.jpeg" alt="BRZ Main 7" class="main-image">
+      <img src="images/Brz.jpeg" alt="BRZ Main 8" class="main-image">
+    </div>
+    <div class="thumbnail-gallery" id="thumbnailGallery">
+      <!-- Thumbnails will be added dynamically -->
+    </div>
+  </div>
+
+  <style>
+    .vertical-gallery {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 2rem 0;
+      min-height: 80vh;
+    }
+    .main-image-scroll {
+      flex: 1 1 70%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      min-width: 0;
+      height: 600px;
+      overflow-y: auto;
+      border-radius: 6px;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+    }
+    .main-image-scroll::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    .main-image {
+      max-width: 90%;
+      max-height: 500px;
+      border-radius: 6px;
+      margin: 20px 0;
+      background: #eee;
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
+    .main-image.shaded::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+      border-radius: 6px;
+      z-index: 2;
+      pointer-events: none;
+      display: block;
+    }
+    .thumbnail-gallery {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      height: calc(4 * 60px + 3 * 8px + 20px); /* Height for exactly 4 thumbnails + gaps + padding */
+      overflow: hidden;
+      z-index: 100;
+    }
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .thumbnail:hover {
+      opacity: 0.8;
+    }
+    .thumbnail.active {
+      opacity: 1;
+      border: 2px solid #007bff;
+    }
+  </style>
+  <script>
+    // All images are the same, but this allows for future extension
+    const images = [
+      'images/Brz.jpeg',
+      'images/Brz.jpeg',
+      'images/Brz.jpeg',
+      'images/Brz.jpeg',
+      'images/Brz.jpeg',
+      'images/Brz.jpeg',
+      'images/Brz.jpeg',
+      'images/Brz.jpeg'
+    ];
+    const mainImageScroll = document.getElementById('mainImageScroll');
+    const mainImages = mainImageScroll.querySelectorAll('.main-image');
+
+    const thumbnailGallery = document.getElementById('thumbnailGallery');
+    const VISIBLE_THUMBNAILS = 4;
+
+    // Create thumbnails container
+    const thumbnailsContainer = document.createElement('div');
+    thumbnailsContainer.className = 'thumbnails-container';
+    thumbnailGallery.appendChild(thumbnailsContainer);
+
+    // Add styles for thumbnails container
+    const style = document.createElement('style');
+    style.textContent = `
+      .thumbnails-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: transform 0.3s ease;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Create thumbnails
+    images.forEach((src, idx) => {
+      const thumb = document.createElement('img');
+      thumb.src = src;
+      thumb.alt = `Thumbnail ${idx + 1}`;
+      thumb.className = 'thumbnail';
+      thumb.dataset.index = idx;
+      thumbnailsContainer.appendChild(thumb);
+
+      // Add click handler to scroll to main image
+      thumb.addEventListener('click', () => {
+        const targetImage = mainImages[idx];
+        mainImageScroll.scrollTo({
+          top: targetImage.offsetTop - mainImageScroll.offsetTop,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    const thumbnails = thumbnailsContainer.querySelectorAll('.thumbnail');
+
+    // Function to update visible thumbnails
+    function updateVisibleThumbnails(activeIdx) {
+      // Calculate the start index for visible thumbnails
+      let startIdx = Math.max(0, Math.min(
+        activeIdx - Math.floor(VISIBLE_THUMBNAILS / 2),
+        images.length - VISIBLE_THUMBNAILS
+      ));
+      
+      // Ensure we don't go below 0
+      startIdx = Math.max(0, startIdx);
+      
+      // Update transform to show the correct thumbnails
+      const offset = startIdx * (60 + 8); // thumbnail height + gap
+      thumbnailsContainer.style.transform = `translateY(-${offset}px)`;
+
+      // Update active state
+      thumbnails.forEach((thumb, idx) => {
+        thumb.classList.remove('active');
+        if (idx === activeIdx) {
+          thumb.classList.add('active');
+        }
+      });
+    }
+
+    // Update thumbnails on scroll
+    mainImageScroll.addEventListener('scroll', () => {
+      let minDiff = Infinity;
+      let activeIdx = 0;
+      const containerRect = mainImageScroll.getBoundingClientRect();
+      
+      mainImages.forEach((img, idx) => {
+        const imgRect = img.getBoundingClientRect();
+        const diff = Math.abs(imgRect.top - containerRect.top);
+        if (diff < minDiff) {
+          minDiff = diff;
+          activeIdx = idx;
+        }
+      });
+
+      // Update main images shading
+      mainImages.forEach((img, idx) => {
+        img.classList.remove('shaded');
+        if (idx > activeIdx) {
+          img.classList.add('shaded');
+        }
+      });
+
+      // Update visible thumbnails
+      updateVisibleThumbnails(activeIdx);
+    });
+
+    // Initial setup
+    mainImages.forEach((img, idx) => {
+      if (idx > 0) img.classList.add('shaded');
+    });
+    updateVisibleThumbnails(0);
+  </script>
+</body>
+</html> 

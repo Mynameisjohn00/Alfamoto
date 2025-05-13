@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ALFAMOTOGARAGE</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
     body {
       margin: 0;
@@ -53,33 +54,6 @@
     }
     .hero button:hover {
       background: #444;
-    }
-    .navbar {
-      width: 100vw;
-      background: #fff;
-      color: #111;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 5vw 1.2rem 5vw;
-      box-sizing: border-box;
-      position: relative;
-      z-index: 10;
-    }
-    .navbar .logo {
-      font-weight: bold;
-      font-size: 1.4rem;
-      letter-spacing: 2px;
-    }
-    .navbar nav a {
-      color: #111;
-      text-decoration: none;
-      margin-left: 2rem;
-      font-size: 1rem;
-      transition: color 0.2s;
-    }
-    .navbar nav a:hover {
-      color: #007bff;
     }
     .info-section {
       display: flex;
@@ -152,16 +126,8 @@
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <div class="logo">ALFAMOTOGARAGE</div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-      <a href="#shop">Shop</a>
-    </nav>
-  </div>
+  <header-component></header-component>
+  <script src="header.js"></script>
   <div class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -173,8 +139,7 @@
   <div class="info-section">
     <div class="info-block">
       <h2>OUR SERVICES</h2>
-      <p>Explore our range of car wrapping and detailing services tailored to your needs.</p>
-      <button>VIEW SERVICES</button>
+      <p>Attention to detail in our wrapping and car detailing services demonstrates our commitment to excellence, ensuring every vehicle receives a flawless, professional finish..</p>
     </div>
     <div class="info-block">
       <h2>OUR WORK</h2>
@@ -182,5 +147,8 @@
       <button>VIEW PORTFOLIO</button>
     </div>
   </div>
+  <footer-component></footer-component>
+  <script src="footer.js"></script>
 </body>
 </html>
+
