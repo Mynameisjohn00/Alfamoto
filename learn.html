@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(120deg, #f8fafc 0%, #e3e9f0 100%);
+      min-height: 100vh;
+    }
+    .content-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 rgba(60,72,88,0.10);
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      max-width: 900px;
+      margin: 3rem auto;
+      border-left: 8px solid #000000;
+    }
+    h2 {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 2.2rem;
+      color: #3069ee;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+    hr {
+      border: none;
+      border-top: 2px solid #ffffff;
+      margin: 2.5rem 0 2rem 0;
+    }
+    p {
+      font-size: 1.15rem;
+      color: #3a4256;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    strong {
+      color: #000000;
+    }
+    @media (max-width: 600px) {
+      .content-card {
+        padding: 1.2rem 0.7rem 1.2rem 1.2rem;
+      }
+      h2 {
+        font-size: 1.4rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header-component></header-component>
+  <script src="header.js"></script>
+  <div class="content-card">
+    <h2>Car Wrapping</h2>
+    <p><strong>Car wrapping</strong> involves applying a thin, adhesive vinyl film over the exterior of a vehicle. It's primarily used for aesthetic customization, branding (like company logos), or temporary color changes without affecting the original paint. Wraps come in various finishes (matte, gloss, satin, chrome) and can protect the paint underneath from minor scratches and sun exposure.</p>
+    <hr>
+    <h2>PPF (Paint Protection Film) &amp; Paint Correction</h2>
+    <p><strong>PPF (Paint Protection Film)</strong> is a clear, durable polyurethane film applied to a car's painted surfaces to protect against rock chips, scratches, and UV damage. It's virtually invisible and helps preserve the car's showroom finish.</p>
+    <p><strong>Paint Correction</strong> is a detailed polishing process that removes surface imperfections such as swirl marks, oxidation, and light scratches, restoring clarity and depth to the paint. It's often done before applying PPF or ceramic coatings for best results.</p>
+  </div>
+</body>
+</html>

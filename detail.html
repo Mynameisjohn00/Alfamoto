@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>   
+  <meta charset="UTF-8">   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <title>Detailing</title>   
+  <link rel="stylesheet" href="styles.css">   
+  <style>     
+    body {       
+      margin: 0;       
+      font-family: 'Arial', sans-serif;       
+      background: #fff;     
+    }      
+    
+    .contact-container {       
+      max-width: 800px;       
+      margin: 3rem auto;       
+      padding: 2rem;       
+      background: #fff;       
+      border-radius: 12px;       
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);     
+    }      
+    
+    .contact-header {       
+      text-align: center;       
+      margin-bottom: 2.5rem;     
+    }      
+    
+    .contact-header h1 {       
+      font-size: 2.2rem;       
+      color: #333;       
+      margin-bottom: 1rem;     
+    }      
+    
+    .contact-header p {       
+      color: #666;       
+      font-size: 1.1rem;       
+      line-height: 1.6;     
+    }      
+    
+    .form-container {       
+      width: 100%;       
+      display: flex;       
+      justify-content: center;     
+    }      
+    
+    .form-container iframe {       
+      border: none;       
+      width: 100%;       
+      min-height: 1297px;       
+      max-width: 640px;     
+    }      
+    
+    @media (max-width: 768px) {       
+      .contact-container {         
+        margin: 2rem 1rem;         
+        padding: 1.5rem;       
+      }        
+      
+      .contact-header h1 {         
+        font-size: 1.8rem;       
+      }     
+      
+      .form-container iframe {       
+        min-height: 1400px; /* Slightly taller on mobile to account for stacked fields */       
+      }     
+    }   
+  </style> 
+</head> 
+<body>   
+  <header-component></header-component>   
+  <script src="header.js"></script>    
+  
+  <div class="contact-container">     
+    <div class="contact-header">       
+      <h1>Book Your Detailing Service</h1>       
+      <p>Fill out the form below to schedule your detailing service. We'll get back to you shortly to confirm your appointment.</p>     
+    </div>      
+    
+    <div class="form-container">       
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfG-XEmR28zYu5nPkfLcsj9MR728ggFze2UfaN_YNQd2cAf3w/viewform?embedded=true"
+              width="640"
+              height="1162"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0">
+        Loading…
+      </iframe>
+    </div>   
+  </div>    
+</body>
+</html>

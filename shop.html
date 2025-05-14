@@ -11,10 +11,182 @@
       font-family: 'Arial', sans-serif;
       background: #fff;
     }
+    
+    .merch-section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .merch-grid {
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      overflow-x: hidden;
+      padding: 1rem 0;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+      scrollbar-width: none;  /* Hide scrollbar for Firefox */
+    }
+
+    .merch-grid::-webkit-scrollbar {
+      display: none;  /* Hide scrollbar for Chrome, Safari and Opera */
+    }
+
+    .nav-area {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 30%;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .nav-area:hover {
+      background: none;
+    }
+
+    .nav-area.left {
+      left: 0;
+    }
+
+    .nav-area.right {
+      right: 0;
+    }
+
+    .nav-area:disabled {
+      cursor: default;
+    }
+
+    .nav-area:disabled:hover {
+      background: none;
+    }
+
+    .nav-button {
+      display: none;
+    }
+
+    .product-box {
+      flex: 0 0 250px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.2s;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .product-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background: #f5f5f5;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+    }
+
+    .product-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+    }
+
+    .product-description {
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .product-price {
+      color: #2c5282;
+      font-weight: bold;
+      font-size: 1.3rem;
+      margin: 0.5rem 0;
+    }
   </style>
 </head>
 <body>
   <header-component></header-component>
+  
+  <main class="merch-section">
+    <h1>Premium Car Wraps</h1>
+    <div class="nav-area left" onclick="scrollWraps('left')" id="leftNav"></div>
+    <div class="nav-area right" onclick="scrollWraps('right')" id="rightNav"></div>
+    <div class="merch-grid" id="wrapsContainer">
+      <div class="product-box">
+        <div class="product-image">Matte Black Wrap</div>
+        <h2 class="product-title">Matte Black Finish</h2>
+        <p class="product-price">$2,499</p>
+        <p class="product-description">Premium matte black vinyl wrap with 5-year warranty</p>
+      </div>
+      
+      <div class="product-box">
+        <div class="product-image">Chrome Wrap</div>
+        <h2 class="product-title">Chrome Mirror Finish</h2>
+        <p class="product-price">$3,299</p>
+        <p class="product-description">High-gloss chrome finish with UV protection</p>
+      </div>
+      
+      <div class="product-box">
+        <div class="product-image">Carbon Fiber Wrap</div>
+        <h2 class="product-title">Carbon Fiber Look</h2>
+        <p class="product-price">$2,799</p>
+        <p class="product-description">3D carbon fiber texture with matte finish</p>
+      </div>
+      
+      <div class="product-box">
+        <div class="product-image">Color Change Wrap</div>
+        <h2 class="product-title">Custom Color Change</h2>
+        <p class="product-price">$2,999</p>
+        <p class="product-description">Full color change with premium vinyl</p>
+      </div>
+    </div>
+  </main>
+
   <script src="header.js"></script>
+  <script>
+    function scrollWraps(direction) {
+      const container = document.getElementById('wrapsContainer');
+      const scrollAmount = 300; // Adjust this value to control scroll distance
+      
+      if (direction === 'left') {
+        container.scrollLeft -= scrollAmount;
+      } else {
+        container.scrollLeft += scrollAmount;
+      }
+    }
+
+    // Update nav areas based on scroll position
+    const container = document.getElementById('wrapsContainer');
+    const leftNav = document.getElementById('leftNav');
+    const rightNav = document.getElementById('rightNav');
+
+    container.addEventListener('scroll', () => {
+      // Enable/disable left nav
+      leftNav.style.pointerEvents = container.scrollLeft <= 0 ? 'none' : 'auto';
+      
+      // Enable/disable right nav
+      rightNav.style.pointerEvents = 
+        container.scrollLeft >= container.scrollWidth - container.clientWidth ? 'none' : 'auto';
+    });
+
+    // Initial nav state
+    window.addEventListener('load', () => {
+      leftNav.style.pointerEvents = 'none';
+      rightNav.style.pointerEvents = 
+        container.scrollWidth <= container.clientWidth ? 'none' : 'auto';
+    });
+  </script>
 </body>
 </html> 

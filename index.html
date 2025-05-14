@@ -13,7 +13,7 @@
     }
     .hero {
       position: relative;
-      width: 100vw;
+      width: 100%;
       height: 60vh;
       background: url('images/brz.jpeg') center center/cover no-repeat;
       display: flex;
@@ -53,6 +53,21 @@
       transition: background 0.2s;
     }
     .hero button:hover {
+      background: #444;
+    }
+    .hero-button {
+      display: inline-block;
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .hero-button:hover {
       background: #444;
     }
     .info-section {
@@ -133,7 +148,7 @@
     <div class="hero-content">
       <h1>CAR WRAPPING<br>& DETAILING</h1>
       <p>Professional car wrapping and detailing services to give your vehicle a stunning new look and immaculate finish.</p>
-      <button>LEARN MORE</button>
+      <a href="learn.html" class="hero-button">LEARN MORE</a>
     </div>
   </div>
   <div class="info-section">
@@ -144,7 +159,9 @@
     <div class="info-block">
       <h2>OUR WORK</h2>
       <p>Take a look at our portfolio of completed projects and see the quality of our work.</p>
-      <button>VIEW PORTFOLIO</button>
+      </div>
+      <div>
+      </div>
     </div>
   </div>
   <footer-component></footer-component>
